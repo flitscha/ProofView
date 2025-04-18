@@ -5,8 +5,9 @@ from data_model import ProofStep, LeanLine
 
 def parse_lean_file(filepath):
     steps = [] # list of ProofStep objects
-    current_comment = ""
+    current_comment = [] # list of strings
     current_lean_lines = [] # list of LeanLine objects
+    current_line_number = 0
 
     state = "lean_code" # state of the parser. Can be "comment", "lean_code"
 
@@ -21,17 +22,18 @@ def parse_lean_file(filepath):
     # open the file and read it line by line
     with open(filepath, 'r') as f:
         for line in f:
+            current_line_number += 1
+
             stripped = line.strip()
             if stripped == "":
                 continue # skip empty lines
             
             # start of a comment. Switch the state to "comment"
             if stripped.startswith("/-"):
+                append_step() # append the data of the last step to the list of steps
                 state = "comment"
                 current_comment = [stripped.removeprefix("/-").strip()]
                 current_lean_lines = []
-                # append the data of the last step to the list of steps
-                append_step()
                 continue
             
             # comment state
@@ -47,6 +49,7 @@ def parse_lean_file(filepath):
             if state == "lean_code":
                 current_line = LeanLine(
                     lean_line=stripped,
+                    line_number=current_line_number,
                     goal_before=[],
                     goal_after=[],
                 )

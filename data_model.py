@@ -7,6 +7,7 @@ from typing import Optional
 @dataclass
 class LeanLine:
     lean_line: str
+    line_number: int
     goal_before: [str]
     goal_after: [str]
 
