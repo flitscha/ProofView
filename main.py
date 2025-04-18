@@ -1,13 +1,19 @@
 # main.py
 
+import asyncio
+
 from parser import parse_lean_file
 from data_model import ProofStep, LeanLine
+from lean_client_interface import LeanSession
+from add_metadata import add_goals_to_proof_steps
 
-from lean_client_interface import *
 
-
-def main():
+async def main():
     proof_steps = parse_lean_file("examples/example_file.lean")
+    lean_session = LeanSession("examples/example_file.lean")
+    await lean_session.start()
+
+    await add_goals_to_proof_steps(lean_session, proof_steps)
 
     for step in proof_steps:
         print("Proof Step:")
@@ -17,16 +23,7 @@ def main():
             print(f"Goal Before: {line.goal_before}")
             print(f"Goal After: {line.goal_after}")
         print()
-    lean_session = LeanSession("examples/example_file.lean")
-    asyncio.run(run_lean_interaction())
-
-
-async def run_lean_interaction():
-    lean_session = LeanSession("examples/example_file.lean")
-    await lean_session.start()
-    goal = await lean_session.get_goal_at_position(8, 1)
-    print("Goal at line 8, column 1:", goal)
     
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())

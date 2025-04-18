@@ -72,7 +72,6 @@ class LeanSession:
         })
 
     async def get_goal_at_position(self, line, character, request_id=1):
-        print("hkk")
         await self._send({
             "jsonrpc": "2.0",
             "id": request_id,
@@ -83,4 +82,12 @@ class LeanSession:
             }
         })
         response = await self._recv_response(request_id)
-        return response.get("result", {}).get("rendered", "No goal found.")
+
+        if response is None:
+            return "No response from Lean server."
+
+        result = response.get("result")
+        if result is None:
+            return "no goals"
+
+        return result.get("rendered", "No goal found.")
