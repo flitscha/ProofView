@@ -17,9 +17,15 @@ def main():
             print(f"Goal Before: {line.goal_before}")
             print(f"Goal After: {line.goal_after}")
         print()
-    
-    asyncio.run(start_lean_server("examples/example_file.lean"))
+    lean_session = LeanSession("examples/example_file.lean")
+    asyncio.run(run_lean_interaction())
 
+
+async def run_lean_interaction():
+    lean_session = LeanSession("examples/example_file.lean")
+    await lean_session.start()
+    goal = await lean_session.get_goal_at_position(8, 1)
+    print("Goal at line 8, column 1:", goal)
     
 
 if __name__ == "__main__":
