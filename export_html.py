@@ -17,13 +17,12 @@ def generate_proof_html_content(proof_steps: list[ProofStep]) -> str:
 
 
 def generate_and_save_html(proof_steps, output_file="output.html"):
-    template_path = Path("templates/base.html")
-    with open(template_path, "r", encoding="utf-8") as f:
-        base_template = f.read()
+    base = Path("templates/base.html").read_text(encoding="utf-8")
+    css = Path("static/style.css").read_text(encoding="utf-8")
+    js = Path("static/script.js").read_text(encoding="utf-8")
+    content = generate_proof_html_content(proof_steps)
 
-    html_content = generate_proof_html_content(proof_steps)
-    final_html = base_template.replace("{{ proof_steps }}", html_content)
-
+    final_html = base.replace("/* CSS */", css).replace("{{ JS }}", js).replace("{{ CONTENT }}", content)
     with open(output_file, "w", encoding="utf-8") as f:
         f.write(final_html)
 

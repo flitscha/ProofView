@@ -14,17 +14,8 @@ async def main():
 
     await add_goals_to_proof_steps(lean_session, proof_steps)
 
-    """
-    for step in proof_steps:
-        print("Proof Step:")
-        print(f"Comment: {step.latex_comment}")
-        for line in step.lean_code:
-            print(f"Lean Line: {line.lean_line}")
-            print(f"Goal Before: {line.goal_before}")
-            print(f"Goal After: {line.goal_after}")
-        print()"""
-        
     html = generate_and_save_html(proof_steps, output_file="output.html")
+    print("html generated successfully")
 
 if __name__ == "__main__":
     asyncio.run(main())
