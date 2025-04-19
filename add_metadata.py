@@ -1,6 +1,3 @@
-# add_metadata.py
-
-
 async def add_goals_to_proof_steps(lean_session, proof_steps):
     """
     enrich the proof steps with goal information

@@ -9,6 +9,8 @@ theorem test_theorem (A B : Prop) : A ∧ B → B ∧ A := by {
   intro h
   /-
   we want to prove that (B and A) is also true.
+  this comment is
+  multiple lines long!
   -/
   obtain ⟨a, b⟩ := h
   constructor

@@ -36,6 +36,8 @@ def parse_lean_file(filepath):
             
             # comment state
             if state == "comment":
+                if len(current_comment) > 0:
+                    current_comment += "\n"
                 if stripped.endswith("-/"):
                     current_comment += stripped.removesuffix("-/").strip()
                     state = "lean_code"
@@ -46,7 +48,7 @@ def parse_lean_file(filepath):
             # lean_code state
             if state == "lean_code":
                 current_line = LeanLine(
-                    lean_line=stripped,
+                    lean_line=line,
                     line_number=current_line_number,
                     goal_before=[],
                     goal_after=[],
