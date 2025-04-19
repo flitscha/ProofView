@@ -1,11 +1,10 @@
-# main.py
-
 import asyncio
 
 from parser import parse_lean_file
 from data_model import ProofStep, LeanLine
 from lean_client_interface import LeanSession
 from add_metadata import add_goals_to_proof_steps
+from export_html import proof_steps_to_html, save_html_to_file
 
 
 async def main():

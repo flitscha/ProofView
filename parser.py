@@ -1,11 +1,9 @@
-# parser.py
-
 from data_model import ProofStep, LeanLine
 
 
 def parse_lean_file(filepath):
     steps = [] # list of ProofStep objects
-    current_comment = [] # list of strings
+    current_comment = ""
     current_lean_lines = [] # list of LeanLine objects
     current_line_number = 0
 
@@ -32,17 +30,17 @@ def parse_lean_file(filepath):
             if stripped.startswith("/-"):
                 append_step() # append the data of the last step to the list of steps
                 state = "comment"
-                current_comment = [stripped.removeprefix("/-").strip()]
+                current_comment = stripped.removeprefix("/-").strip()
                 current_lean_lines = []
                 continue
             
             # comment state
             if state == "comment":
                 if stripped.endswith("-/"):
-                    current_comment.append(stripped.removesuffix("-/").strip())
+                    current_comment += stripped.removesuffix("-/").strip()
                     state = "lean_code"
                 else:
-                    current_comment.append(stripped)
+                    current_comment += stripped
                 continue
             
             # lean_code state
