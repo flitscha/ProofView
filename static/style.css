@@ -1,0 +1,44 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    padding: 2em;
+    background-color: #f9f9f9;
+}
+
+h1 {
+    margin-bottom: 1em;
+}
+
+.proof-step {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 0.5em;
+    margin-bottom: 0.5em;
+    transition: box-shadow 0.2s;
+}
+
+.comment {
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    padding: 0.5em;
+    border-radius: 4px;
+    white-space: pre-wrap;
+}
+
+.comment:hover {
+    background-color: #eef2f7;
+}
+
+.lean-line {
+    background-color: #f1f1f1;
+    padding: 0.5em 1em;
+    border-radius: 6px;
+    margin-top: 0.8em;
+    display: none;
+    font-family: 'Fira Code', monospace;
+}
+
+.lean-line pre {
+    margin: 0.2em 0;
+}
