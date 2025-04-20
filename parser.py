@@ -28,7 +28,8 @@ def parse_lean_file(filepath):
             
             # start of a comment. Switch the state to "comment"
             if stripped.startswith("/-"):
-                append_step() # append the data of the last step to the list of steps
+                if current_comment != "":
+                    append_step() # append the data of the last step to the list of steps
                 state = "comment"
                 current_comment = stripped.removeprefix("/-").strip()
                 current_lean_lines = []

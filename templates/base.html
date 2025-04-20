@@ -10,9 +10,19 @@
 
 <body>
     <h1>Lean Proof</h1>
-    {{ CONTENT }}
+    <div class="layout">
+        <div class="proof-area">
+            {{ CONTENT }}
+        </div>
+        <div class="goal-area">
+            <h2>Goals</h2>
+            <div id="goal-display">
+                <p>Select a position to view a goal.</p>
+                <!-- GOAL -->
+            </div>
+        </div>
+    </div>
     <script>
     {{ JS }}
     </script>
 </body>
-</html>

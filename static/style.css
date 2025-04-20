@@ -42,3 +42,24 @@ h1 {
 .lean-line pre {
     margin: 0.2em 0;
 }
+
+.layout {
+    display: flex;
+    gap: 2em;
+    align-items: flex-start;
+}
+
+.proof-area {
+    flex: 3;
+}
+
+.goal-area {
+    flex: 1;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 1em;
+    border-radius: 8px;
+    height: fit-content;
+    position: sticky;
+    top: 1em;
+}
