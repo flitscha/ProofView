@@ -62,4 +62,31 @@ h1 {
     height: fit-content;
     position: sticky;
     top: 1em;
+    white-space: pre-line;
+}
+
+.lean-line-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.goal-button {
+    width: 1.2em;
+    height: 1.2em;
+    background-color: #ddd;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline-block;
+    transition: background-color 0.2s;
+}
+
+.goal-button:hover {
+    background-color: #999;
+}
+
+.hidden-goal {
+    display: none;
+    white-space: pre-wrap;
 }

@@ -8,8 +8,19 @@ def generate_proof_html_content(proof_steps: list[ProofStep]) -> str:
         html += f'<div class="proof-step">\n'
         html += f'  <div class="comment" onclick="toggleCode(\'code-{i}\')">{step.latex_comment}</div>\n'
         html += f'  <div class="lean-line" id="code-{i}">\n'
-        for line in step.lean_code:
-            html += f'    <pre>{line.lean_line}</pre>\n'
+
+        for j, line in enumerate(step.lean_code):
+            # each lean-line is a div with a button on each side
+            html += f'    <div class="lean-line-row">\n'
+            html += f'      <button class="goal-button" onclick="setGoalFromElement(\'goal-before-{i}-{j}\')"></button>\n'
+            html += f'      <pre>{line.lean_line}</pre>\n'
+            html += f'      <button class="goal-button" onclick="setGoalFromElement(\'goal-after-{i}-{j}\')"></button>\n'
+            html += f'    </div>\n'
+
+            # hidden goal divs to access, if the button is clicked
+            html += f'    <div id="goal-before-{i}-{j}" class="hidden-goal">{line.goal_before}</div>\n'
+            html += f'    <div id="goal-after-{i}-{j}" class="hidden-goal">{line.goal_after}</div>\n'
+        
         html += f'  </div>\n'
         html += f'</div>\n'
     return html

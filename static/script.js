@@ -6,3 +6,17 @@ function toggleCode(id) {
         block.style.display = "none";
     }
 }
+
+
+function setGoalFromElement(id) {
+    const goalText = document.getElementById(id).innerText;
+    setGoal(goalText);
+}
+
+
+function setGoal(goal_string) {
+    const goalArea = document.getElementById("goal-display");
+    goalArea.innerHTML = `
+        <div>${goal_string}</div>
+    `;
+}
