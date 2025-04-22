@@ -1,7 +1,7 @@
 import asyncio
 import json
 import subprocess
-
+import os
 
 class LeanSession:
     def __init__(self, lean_file_path):
@@ -9,21 +9,27 @@ class LeanSession:
         self.uri = f"file://{lean_file_path}"
         self.proc = None
 
+
     async def start(self):
+        project_root = "/mnt/c/daten/programmieren/lean/Math"
+
         self.proc = await asyncio.create_subprocess_exec(
             'lean', '--server',
             stdin=asyncio.subprocess.PIPE,
             stdout=asyncio.subprocess.PIPE,
-            stderr=subprocess.PIPE
+            stderr=subprocess.PIPE,
+            cwd=project_root
         )
         await self._initialize()
         await self._open_file()
+
 
     async def _send(self, msg):
         raw = json.dumps(msg)
         header = f"Content-Length: {len(raw)}\r\n\r\n"
         self.proc.stdin.write(header.encode('utf-8') + raw.encode('utf-8'))
         await self.proc.stdin.drain()
+
 
     async def _recv_response(self, expected_id):
         while True:
@@ -36,6 +42,7 @@ class LeanSession:
             response = json.loads(body)
             if response.get("id") == expected_id:
                 return response
+
 
     async def _initialize(self):
         await self._send({
@@ -54,6 +61,7 @@ class LeanSession:
             "params": {}
         })
 
+
     async def _open_file(self):
         with open(self.lean_file_path, 'r') as f:
             text = f.read()
@@ -70,6 +78,7 @@ class LeanSession:
                 }
             }
         })
+
 
     async def get_goal_at_position(self, line, character, request_id=1):
         await self._send({

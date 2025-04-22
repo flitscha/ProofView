@@ -8,8 +8,11 @@ from export_html import generate_and_save_html
 
 
 async def main():
-    proof_steps = parse_lean_file("examples/example_file.lean")
-    lean_session = LeanSession("examples/example_file.lean")
+    #file = "examples/task1.lean"
+    file = "examples/example_file.lean"
+    #file = "/mnt/c/daten/programmieren/lean/Math/Math/Topology_Homework/task1.lean"
+    proof_steps = parse_lean_file(file)
+    lean_session = LeanSession(file)
     await lean_session.start()
 
     await add_goals_to_proof_steps(lean_session, proof_steps)
