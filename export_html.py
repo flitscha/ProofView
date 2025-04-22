@@ -12,9 +12,9 @@ def generate_proof_html_content(proof_steps: list[ProofStep]) -> str:
         for j, line in enumerate(step.lean_code):
             # each lean-line is a div with a button on each side
             html += f'    <div class="lean-line-row">\n'
-            html += f'      <button class="goal-button" onclick="setGoalFromElement(\'goal-before-{i}-{j}\')"></button>\n'
+            html += f'      <button class="goal-button" onclick="setGoalFromElement(\'goal-before-{i}-{j}\', this)"></button>\n'
             html += f'      <pre>{line.lean_line}</pre>\n'
-            html += f'      <button class="goal-button" onclick="setGoalFromElement(\'goal-after-{i}-{j}\')"></button>\n'
+            html += f'      <button class="goal-button" onclick="setGoalFromElement(\'goal-after-{i}-{j}\', this)"></button>\n'
             html += f'    </div>\n'
 
             # hidden goal divs to access, if the button is clicked
