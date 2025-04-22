@@ -1,4 +1,7 @@
 let currentActiveButton = null;
+let goalButtons = [];
+let goalButtonIndex = -1;
+
 
 function toggleCode(id) {
     const block = document.getElementById(id);
@@ -29,5 +32,51 @@ function setGoal(goal_string, button_element) {
     if (button_element) {
         button_element.classList.add("active-goal-button");
         currentActiveButton = button_element;
+        
+        // keep track of the current button index (for keyboard navigation)
+        const newIndex = goalButtons.indexOf(button_element);
+        goalButtonIndex = newIndex;
     }
 }
+
+
+
+// load all goal buttons on page load
+window.addEventListener('load', () => {
+    goalButtons = Array.from(document.querySelectorAll('.goal-button'));
+});
+
+// keyboard navigation for goal buttons
+document.addEventListener('keydown', (e) => {
+    if (goalButtons.length === 0) return;
+
+    if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (goalButtonIndex < goalButtons.length - 2) {
+            goalButtonIndex = goalButtonIndex + 2;
+        }
+    }
+
+    if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (goalButtonIndex > 1) {
+            goalButtonIndex = goalButtonIndex - 2;
+        }
+    }
+
+    if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        if (goalButtonIndex < goalButtons.length - 1) {
+            goalButtonIndex = goalButtonIndex + 1;
+        }
+    }
+
+    if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        if (goalButtonIndex > 0) {
+            goalButtonIndex = goalButtonIndex - 1;
+        }
+    }
+
+    goalButtons[goalButtonIndex].click();
+});

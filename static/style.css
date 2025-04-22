@@ -91,6 +91,10 @@ h1 {
     box-shadow: 0 0 0 2px #388e3c66;
 }
 
+.goal-button:focus {
+    outline: none;
+}
+
 .hidden-goal {
     display: none;
     white-space: pre-wrap;
