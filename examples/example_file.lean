@@ -1,19 +1,32 @@
 
 /-
-Theorem: A and B implies B and A
+$ \textbf{Theorem:} $
+$ A \land B \Rightarrow B \land A $
 -/
 theorem test_theorem (A B : Prop) : A ∧ B → B ∧ A := by {
   /-
-  first we assume that (A and B) is true
+  $ \textbf{Proof:} $
+  Assume that $ A \land B $ holds.
   -/
   intro h
+
   /-
-  we want to prove that (B and A) is also true.
-  this comment is
-  multiple lines long!
+  Then both propositions $ A $ and $ B $ are true.
   -/
   obtain ⟨a, b⟩ := h
+
+  /-
+  To prove $ B \land A $, we need to show both $ B $ and $ A $,
+  but in reverse order.
+  -/
   constructor
+
+  /-
+  Since we already have a proof for $ B $ and $ A $,
+  it follows that $ B \land A $ holds.
+
+  $ \blacksquare $
+  -/
   exact b
   exact a
 }
