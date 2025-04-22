@@ -78,5 +78,15 @@ document.addEventListener('keydown', (e) => {
         }
     }
 
+    ensureVisible(goalButtons[goalButtonIndex]);
     goalButtons[goalButtonIndex].click();
 });
+
+
+// we want to ensure that the button is visible when navigating with the keyboard
+function ensureVisible(button) {
+    let parent = button.parentElement;
+    if (parent.style.display === "none" || parent.style.display === "") {
+        parent.style.display = "block";
+    }
+}
