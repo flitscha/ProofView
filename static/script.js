@@ -14,7 +14,7 @@ function toggleCode(id) {
 
 
 function setGoalFromElement(id, button_element) {
-    const goalText = document.getElementById(id).innerText;
+    const goalText = document.getElementById(id).innerHTML;
     setGoal(goalText, button_element);
 }
 

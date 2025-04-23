@@ -65,6 +65,34 @@ h1 {
     white-space: pre-line;
 }
 
+/* styles for the text in the goal area */
+.goal-case { /* keyword "case" is green */
+    color: darkgreen;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+.goal-turnstile { /* turnstyle symbol "⊢" is red */
+    color: blue;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+.goal-id { /* identifiers are orange */
+    color: darkorange;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+.goal-pre {
+    white-space: pre-wrap;
+    font-family: monospace;
+    font-size: 1.2rem;
+}
+
+.hidden-goal {
+    display: none;
+    white-space: pre-wrap;
+}
+
+/* code lines */
 .lean-line-row {
     display: flex;
     align-items: center;
@@ -95,7 +123,3 @@ h1 {
     outline: none;
 }
 
-.hidden-goal {
-    display: none;
-    white-space: pre-wrap;
-}

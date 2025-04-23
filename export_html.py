@@ -1,6 +1,6 @@
 from data_model import ProofStep, LeanLine
 from pathlib import Path
-
+from syntax_highlighter import highlight_goal
 
 def generate_proof_html_content(proof_steps: list[ProofStep]) -> str:
     html = ""
@@ -18,8 +18,8 @@ def generate_proof_html_content(proof_steps: list[ProofStep]) -> str:
             html += f'    </div>\n'
 
             # hidden goal divs to access, if the button is clicked
-            html += f'    <div id="goal-before-{i}-{j}" class="hidden-goal">{line.goal_before}</div>\n'
-            html += f'    <div id="goal-after-{i}-{j}" class="hidden-goal">{line.goal_after}</div>\n'
+            html += f'    <div id="goal-before-{i}-{j}" class="hidden-goal">{highlight_goal(line.goal_before)}</div>\n'
+            html += f'    <div id="goal-after-{i}-{j}" class="hidden-goal">{highlight_goal(line.goal_after)}</div>\n'
         
         html += f'  </div>\n'
         html += f'</div>\n'
