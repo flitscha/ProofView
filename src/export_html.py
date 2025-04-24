@@ -1,3 +1,5 @@
+import os
+
 from data_model import ProofStep, LeanLine
 from pathlib import Path
 from syntax_highlighter import highlight_goal
@@ -29,9 +31,10 @@ def generate_proof_html_content(proof_steps: list[ProofStep]) -> str:
 
 def generate_and_save_html(proof_steps, output_file="output.html", language="en", title="Lean Proof"):
     # read the base template and the css and js files
-    base = Path("templates/base.html").read_text(encoding="utf-8")
-    css = Path("static/style.css").read_text(encoding="utf-8")
-    js = Path("static/script.js").read_text(encoding="utf-8")
+    project_root = Path(os.path.dirname(os.path.abspath(__file__))).parent
+    base = (project_root / "src" / "templates" / "base.html").read_text(encoding="utf-8")
+    css = (project_root / "src" / "static" / "style.css").read_text(encoding="utf-8")
+    js = (project_root / "src" / "static" / "script.js").read_text(encoding="utf-8")
     content = generate_proof_html_content(proof_steps)
 
     if language == "de":
