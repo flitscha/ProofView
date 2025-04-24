@@ -69,22 +69,22 @@ h1 {
 .goal-case { /* keyword "case" is green */
     color: darkgreen;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 .goal-turnstile { /* turnstyle symbol "⊢" is red */
     color: blue;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 .goal-id { /* identifiers are orange */
     color: darkorange;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 .goal-pre {
     white-space: pre-wrap;
     font-family: monospace;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 .hidden-goal {
