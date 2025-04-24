@@ -4,21 +4,20 @@ import subprocess
 import os
 
 class LeanSession:
-    def __init__(self, lean_file_path):
+    def __init__(self, lean_file_path, project_root=None):
         self.lean_file_path = lean_file_path
+        self.project_root = project_root
         self.uri = f"file://{lean_file_path}"
         self.proc = None
 
 
     async def start(self):
-        project_root = "/mnt/c/daten/programmieren/lean/Math"
-
         self.proc = await asyncio.create_subprocess_exec(
             'lean', '--server',
             stdin=asyncio.subprocess.PIPE,
             stdout=asyncio.subprocess.PIPE,
             stderr=subprocess.PIPE,
-            cwd=project_root
+            cwd=self.project_root
         )
         await self._initialize()
         await self._open_file()

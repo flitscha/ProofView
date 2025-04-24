@@ -27,13 +27,35 @@ def generate_proof_html_content(proof_steps: list[ProofStep]) -> str:
 
 
 
-def generate_and_save_html(proof_steps, output_file="output.html"):
+def generate_and_save_html(proof_steps, output_file="output.html", language="en", title="Lean Proof"):
+    # read the base template and the css and js files
     base = Path("templates/base.html").read_text(encoding="utf-8")
     css = Path("static/style.css").read_text(encoding="utf-8")
     js = Path("static/script.js").read_text(encoding="utf-8")
     content = generate_proof_html_content(proof_steps)
 
-    final_html = base.replace("/* CSS */", css).replace("{{ JS }}", js).replace("{{ CONTENT }}", content)
+    if language == "de":
+        goal_hint = "Wählen Sie eine Position aus, um ein Ziel anzuzeigen."
+        goal_title = "Ziele"
+    else:
+        goal_hint = "Select a position to view a goal."
+        goal_title = "Goals"
+
+    # replace the placeholders in the base template with the actual content
+    final_html = (
+        base
+        .replace("/* CSS */", css)
+        .replace("{{ JS }}", js)
+        .replace("{{ CONTENT }}", content)
+        .replace("{{ TITLE }}", title)
+        .replace("{{ GOAL_TITLE }}", goal_title)
+        .replace("{{ GOAL_HINT }}", goal_hint)
+    )
+
+    if language == "de":
+        final_html = final_html.replace("no goals", "keine Ziele")
+
+    # write the final html to the output file
     with open(output_file, "w", encoding="utf-8") as f:
         f.write(final_html)
 
