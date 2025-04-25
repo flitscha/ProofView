@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ProofView</title>
+    <style>
+    body {
+    font-family: 'Segoe UI', sans-serif;
+    padding: 2em;
+    background-color: #f9f9f9;
+}
+
+h1 {
+    margin-bottom: 1em;
+}
+
+.proof-step {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 0.5em;
+    margin-bottom: 0.5em;
+    transition: box-shadow 0.2s;
+}
+
+.comment {
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    padding: 0.5em;
+    border-radius: 4px;
+    white-space: pre-wrap;
+}
+
+.comment:hover {
+    background-color: #eef2f7;
+}
+
+.lean-line {
+    background-color: #f1f1f1;
+    padding: 0.5em 1em;
+    border-radius: 6px;
+    margin-top: 0.8em;
+    display: none;
+    font-family: 'Fira Code', monospace;
+}
+
+.lean-line pre {
+    margin: 0.2em 0;
+}
+
+.layout {
+    display: flex;
+    gap: 2em;
+    align-items: flex-start;
+}
+
+.proof-area {
+    flex: 3;
+}
+
+.goal-area {
+    flex: 2;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 1em;
+    border-radius: 8px;
+    height: fit-content;
+    position: sticky;
+    top: 1em;
+    white-space: pre-line;
+}
+
+/* styles for the text in the goal area */
+.goal-case { /* keyword "case" is green */
+    color: darkgreen;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+.goal-turnstile { /* turnstyle symbol "⊢" is red */
+    color: blue;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+.goal-id { /* identifiers are orange */
+    color: darkorange;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+.goal-pre {
+    white-space: pre-wrap;
+    font-family: monospace;
+    font-size: 1.1rem;
+}
+
+.hidden-goal {
+    display: none;
+    white-space: pre-wrap;
+}
+
+/* code lines */
+.lean-line-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.goal-button {
+    width: 1.2em;
+    height: 1.2em;
+    background-color: #ddd;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline-block;
+    transition: background-color 0.2s;
+}
+
+.goal-button:hover {
+    background-color: #999;
+}
+
+.active-goal-button {
+    background-color: #4CAF50 !important;
+    box-shadow: 0 0 0 2px #388e3c66;
+}
+
+.goal-button:focus {
+    outline: none;
+}
+
+
+    </style>
+
+    <!-- MathJax for LaTeX rendering -->
+    <script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+
+    <script>
+    window.MathJax = {
+    tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+    },
+    options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+        processHtmlClass: 'mathjax-render'
+    }
+    };
+    </script>
+</head>
+
+<body>
+    <h1>Lean Proof</h1>
+    <div class="layout">
+        <div class="proof-area">
+            <div class="proof-step">
+  <div class="comment" onclick="toggleCode('code-0')">$ \textbf{Theorem:} $
+$ A \land B \Rightarrow B \land A $
+</div>
+  <div class="lean-line" id="code-0">
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-0-0', this)"></button>
+      <pre>theorem test_theorem (A B : Prop) : A ∧ B → B ∧ A := by {
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-0-0', this)"></button>
+    </div>
+    <div id="goal-before-0-0" class="hidden-goal"><pre class="goal-pre">no goals</pre></div>
+    <div id="goal-after-0-0" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">A B</span> : Prop
+<span class="goal-turnstile">⊢</span> A ∧ B → B ∧ A</pre></div>
+  </div>
+</div>
+<div class="proof-step">
+  <div class="comment" onclick="toggleCode('code-1')">$ \textbf{Proof:} $
+Assume that $ A \land B $ holds.
+</div>
+  <div class="lean-line" id="code-1">
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-1-0', this)"></button>
+      <pre>  intro h
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-1-0', this)"></button>
+    </div>
+    <div id="goal-before-1-0" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">A B</span> : Prop
+<span class="goal-turnstile">⊢</span> A ∧ B → B ∧ A</pre></div>
+    <div id="goal-after-1-0" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">A B</span> : Prop
+<span class="goal-id">h</span> : A ∧ B
+<span class="goal-turnstile">⊢</span> B ∧ A</pre></div>
+  </div>
+</div>
+<div class="proof-step">
+  <div class="comment" onclick="toggleCode('code-2')">Then both propositions $ A $ and $ B $ are true.
+</div>
+  <div class="lean-line" id="code-2">
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-2-0', this)"></button>
+      <pre>  obtain ⟨a, b⟩ := h
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-2-0', this)"></button>
+    </div>
+    <div id="goal-before-2-0" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">A B</span> : Prop
+<span class="goal-id">h</span> : A ∧ B
+<span class="goal-turnstile">⊢</span> B ∧ A</pre></div>
+    <div id="goal-after-2-0" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case intro</span>
+<span class="goal-id">A B</span> : Prop
+<span class="goal-id">a</span> : A
+<span class="goal-id">b</span> : B
+<span class="goal-turnstile">⊢</span> B ∧ A</pre></div>
+  </div>
+</div>
+<div class="proof-step">
+  <div class="comment" onclick="toggleCode('code-3')">To prove $ B \land A $, we need to show both $ B $ and $ A $,
+but in reverse order.
+</div>
+  <div class="lean-line" id="code-3">
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-3-0', this)"></button>
+      <pre>  constructor
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-3-0', this)"></button>
+    </div>
+    <div id="goal-before-3-0" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case intro</span>
+<span class="goal-id">A B</span> : Prop
+<span class="goal-id">a</span> : A
+<span class="goal-id">b</span> : B
+<span class="goal-turnstile">⊢</span> B ∧ A</pre></div>
+    <div id="goal-after-3-0" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case intro.left</span>
+<span class="goal-id">A B</span> : Prop
+<span class="goal-id">a</span> : A
+<span class="goal-id">b</span> : B
+<span class="goal-turnstile">⊢</span> B
+
+---
+
+<span class="goal-case">case intro.right</span>
+<span class="goal-id">A B</span> : Prop
+<span class="goal-id">a</span> : A
+<span class="goal-id">b</span> : B
+<span class="goal-turnstile">⊢</span> A</pre></div>
+  </div>
+</div>
+<div class="proof-step">
+  <div class="comment" onclick="toggleCode('code-4')">Since we already have a proof for $ B $ and $ A $,
+it follows that $ B \land A $ holds.
+$ \blacksquare $
+</div>
+  <div class="lean-line" id="code-4">
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-4-0', this)"></button>
+      <pre>  exact b
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-4-0', this)"></button>
+    </div>
+    <div id="goal-before-4-0" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case intro.left</span>
+<span class="goal-id">A B</span> : Prop
+<span class="goal-id">a</span> : A
+<span class="goal-id">b</span> : B
+<span class="goal-turnstile">⊢</span> B
+
+---
+
+<span class="goal-case">case intro.right</span>
+<span class="goal-id">A B</span> : Prop
+<span class="goal-id">a</span> : A
+<span class="goal-id">b</span> : B
+<span class="goal-turnstile">⊢</span> A</pre></div>
+    <div id="goal-after-4-0" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case intro.right</span>
+<span class="goal-id">A B</span> : Prop
+<span class="goal-id">a</span> : A
+<span class="goal-id">b</span> : B
+<span class="goal-turnstile">⊢</span> A</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-4-1', this)"></button>
+      <pre>  exact a
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-4-1', this)"></button>
+    </div>
+    <div id="goal-before-4-1" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case intro.right</span>
+<span class="goal-id">A B</span> : Prop
+<span class="goal-id">a</span> : A
+<span class="goal-id">b</span> : B
+<span class="goal-turnstile">⊢</span> A</pre></div>
+    <div id="goal-after-4-1" class="hidden-goal"><pre class="goal-pre">no goals</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-4-2', this)"></button>
+      <pre>}
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-4-2', this)"></button>
+    </div>
+    <div id="goal-before-4-2" class="hidden-goal"><pre class="goal-pre">no goals</pre></div>
+    <div id="goal-after-4-2" class="hidden-goal"><pre class="goal-pre">no goals</pre></div>
+  </div>
+</div>
+
+        </div>
+        <div class="goal-area">
+            <h2>Goals</h2>
+            <div id="goal-display">
+                <p>Select a position to view a goal.</p>
+            </div>
+        </div>
+    </div>
+    <script>
+    let currentActiveButton = null;
+let goalButtons = [];
+let goalButtonIndex = -1;
+
+
+function toggleCode(id) {
+    const block = document.getElementById(id);
+    if (block.style.display === "none" || block.style.display === "") {
+        block.style.display = "block";
+    } else {
+        block.style.display = "none";
+    }
+}
+
+
+function setGoalFromElement(id, button_element) {
+    const goalText = document.getElementById(id).innerHTML;
+    setGoal(goalText, button_element);
+}
+
+
+function setGoal(goal_string, button_element) {
+    const goalArea = document.getElementById("goal-display");
+    goalArea.innerHTML = `<div>${goal_string}</div>`;
+
+    // Remove the previous marked button
+    if (currentActiveButton) {
+        currentActiveButton.classList.remove("active-goal-button");
+    }
+
+    // Mark the new button as active
+    if (button_element) {
+        button_element.classList.add("active-goal-button");
+        currentActiveButton = button_element;
+        
+        // keep track of the current button index (for keyboard navigation)
+        const newIndex = goalButtons.indexOf(button_element);
+        goalButtonIndex = newIndex;
+    }
+}
+
+
+
+// load all goal buttons on page load
+window.addEventListener('load', () => {
+    goalButtons = Array.from(document.querySelectorAll('.goal-button'));
+});
+
+// keyboard navigation for goal buttons
+document.addEventListener('keydown', (e) => {
+    if (goalButtons.length === 0) return;
+
+    if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (goalButtonIndex < goalButtons.length - 2) {
+            goalButtonIndex = goalButtonIndex + 2;
+        }
+    }
+
+    if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (goalButtonIndex > 1) {
+            goalButtonIndex = goalButtonIndex - 2;
+        }
+    }
+
+    if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        if (goalButtonIndex < goalButtons.length - 1) {
+            goalButtonIndex = goalButtonIndex + 1;
+        }
+    }
+
+    if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        if (goalButtonIndex > 0) {
+            goalButtonIndex = goalButtonIndex - 1;
+        }
+    }
+
+    ensureVisible(goalButtons[goalButtonIndex]);
+    goalButtons[goalButtonIndex].click();
+});
+
+
+// we want to ensure that the button is visible when navigating with the keyboard
+function ensureVisible(button) {
+    let parent = button.parentElement.parentElement;
+    if (parent.style.display === "none" || parent.style.display === "") {
+        parent.style.display = "block";
+    }
+}
+    </script>
+</body>

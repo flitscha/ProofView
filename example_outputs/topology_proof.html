@@ -1,0 +1,2451 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ProofView</title>
+    <style>
+    body {
+    font-family: 'Segoe UI', sans-serif;
+    padding: 2em;
+    background-color: #f9f9f9;
+}
+
+h1 {
+    margin-bottom: 1em;
+}
+
+.proof-step {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 0.5em;
+    margin-bottom: 0.5em;
+    transition: box-shadow 0.2s;
+}
+
+.comment {
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    padding: 0.5em;
+    border-radius: 4px;
+    white-space: pre-wrap;
+}
+
+.comment:hover {
+    background-color: #eef2f7;
+}
+
+.lean-line {
+    background-color: #f1f1f1;
+    padding: 0.5em 1em;
+    border-radius: 6px;
+    margin-top: 0.8em;
+    display: none;
+    font-family: 'Fira Code', monospace;
+}
+
+.lean-line pre {
+    margin: 0.2em 0;
+}
+
+.layout {
+    display: flex;
+    gap: 2em;
+    align-items: flex-start;
+}
+
+.proof-area {
+    flex: 3;
+}
+
+.goal-area {
+    flex: 2;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 1em;
+    border-radius: 8px;
+    height: fit-content;
+    position: sticky;
+    top: 1em;
+    white-space: pre-line;
+}
+
+/* styles for the text in the goal area */
+.goal-case { /* keyword "case" is green */
+    color: darkgreen;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+.goal-turnstile { /* turnstyle symbol "⊢" is red */
+    color: blue;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+.goal-id { /* identifiers are orange */
+    color: darkorange;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+.goal-pre {
+    white-space: pre-wrap;
+    font-family: monospace;
+    font-size: 1.1rem;
+}
+
+.hidden-goal {
+    display: none;
+    white-space: pre-wrap;
+}
+
+/* code lines */
+.lean-line-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.goal-button {
+    width: 1.2em;
+    height: 1.2em;
+    background-color: #ddd;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline-block;
+    transition: background-color 0.2s;
+}
+
+.goal-button:hover {
+    background-color: #999;
+}
+
+.active-goal-button {
+    background-color: #4CAF50 !important;
+    box-shadow: 0 0 0 2px #388e3c66;
+}
+
+.goal-button:focus {
+    outline: none;
+}
+
+
+    </style>
+
+    <!-- MathJax for LaTeX rendering -->
+    <script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+
+    <script>
+    window.MathJax = {
+    tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+    },
+    options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+        processHtmlClass: 'mathjax-render'
+    }
+    };
+    </script>
+</head>
+
+<body>
+    <h1>Eindeutigkeit der Produkttopologie</h1>
+    <div class="layout">
+        <div class="proof-area">
+            <div class="proof-step">
+  <div class="comment" onclick="toggleCode('code-0')">$\textbf{Blatt 4, Aufgabe 5}$
+Es seien $(X_i)_{i \in I}$ kompakte Hausdorff-Räume. Zeigen Sie, dass die Produkttopologie
+die eindeutige Topologie auf $\prod_{i \in I} X_i$ mit den folgenden Eigenschaften:
+(a) Die Projektionen $\pi_j : \prod_{i \in I} X_i \to X_j$ sind alle stetig.
+(b) $\prod_{i \in I} X_i$ ist kompakt.
+</div>
+  <div class="lean-line" id="code-0">
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-0-0', this)"></button>
+      <pre>theorem uniqueness_of_product_topology {I : Type*} {X : I → Type*}
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-0-0', this)"></button>
+    </div>
+    <div id="goal-before-0-0" class="hidden-goal"><pre class="goal-pre">keine Ziele</pre></div>
+    <div id="goal-after-0-0" class="hidden-goal"><pre class="goal-pre">keine Ziele</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-0-1', this)"></button>
+      <pre>[∀ i, TopologicalSpace (X i)] [∀ i, CompactSpace (X i)] [∀ i, T2Space (X i)]
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-0-1', this)"></button>
+    </div>
+    <div id="goal-before-0-1" class="hidden-goal"><pre class="goal-pre">keine Ziele</pre></div>
+    <div id="goal-after-0-1" class="hidden-goal"><pre class="goal-pre">keine Ziele</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-0-2', this)"></button>
+      <pre>(T : TopologicalSpace (∀ i, X i))
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-0-2', this)"></button>
+    </div>
+    <div id="goal-before-0-2" class="hidden-goal"><pre class="goal-pre">keine Ziele</pre></div>
+    <div id="goal-after-0-2" class="hidden-goal"><pre class="goal-pre">keine Ziele</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-0-3', this)"></button>
+      <pre>(h_a : ∀ j, Continuous (fun (f : ∀ i, X i) => f j))
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-0-3', this)"></button>
+    </div>
+    <div id="goal-before-0-3" class="hidden-goal"><pre class="goal-pre">keine Ziele</pre></div>
+    <div id="goal-after-0-3" class="hidden-goal"><pre class="goal-pre">keine Ziele</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-0-4', this)"></button>
+      <pre>(h_b : CompactSpace (∀ i, X i)) :
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-0-4', this)"></button>
+    </div>
+    <div id="goal-before-0-4" class="hidden-goal"><pre class="goal-pre">keine Ziele</pre></div>
+    <div id="goal-after-0-4" class="hidden-goal"><pre class="goal-pre">keine Ziele</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-0-5', this)"></button>
+      <pre>T = Pi.topologicalSpace := by {
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-0-5', this)"></button>
+    </div>
+    <div id="goal-before-0-5" class="hidden-goal"><pre class="goal-pre">keine Ziele</pre></div>
+    <div id="goal-after-0-5" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-turnstile">⊢</span> T = Pi.topologicalSpace</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-0-6', this)"></button>
+      <pre>  let Xₚ := (∀ i, X i) -- zugrundeliegende Menge der Produkttopologie
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-0-6', this)"></button>
+    </div>
+    <div id="goal-before-0-6" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-turnstile">⊢</span> T = Pi.topologicalSpace</pre></div>
+    <div id="goal-after-0-6" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-turnstile">⊢</span> T = Pi.topologicalSpace</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-0-7', this)"></button>
+      <pre>  let π (i : I) := fun f : Xₚ => f i -- die Projektion auf die i-te Komponente
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-0-7', this)"></button>
+    </div>
+    <div id="goal-before-0-7" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-turnstile">⊢</span> T = Pi.topologicalSpace</pre></div>
+    <div id="goal-after-0-7" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-turnstile">⊢</span> T = Pi.topologicalSpace</pre></div>
+  </div>
+</div>
+<div class="proof-step">
+  <div class="comment" onclick="toggleCode('code-1')">$\textbf{Beweis:}$
+Wir definieren das kartesische Produkt $\mathcal{X} := \prod_{i \in I} X_i$.
+Sei $\mathcal{T}$ eine Topologie auf $\mathcal{X}$ mit den Eigenschaften (a) und (b).
+Wir zeigen, dass $\mathcal{T}$ gleich der Produkttopologie ist.
+Zuerst zeigen wir die Inklusion $\mathcal{T} \subseteq \mathcal{T}_\Pi$.
+Die Produkttopologie ist per Definition die gröbste Topologie, sodass alle Projektionen stetig sind.
+Da nach Voraussetzung jede Projektion $\pi_j$ bezüglich $\mathcal{T}$ stetig ist, folgt: $\mathcal{T} \subseteq \mathcal{T}_\Pi$.
+</div>
+  <div class="lean-line" id="code-1">
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-1-0', this)"></button>
+      <pre>  have h_hinrichtung : T ≤ Pi.topologicalSpace := by {
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-1-0', this)"></button>
+    </div>
+    <div id="goal-before-1-0" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-turnstile">⊢</span> T = Pi.topologicalSpace</pre></div>
+    <div id="goal-after-1-0" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-turnstile">⊢</span> T ≤ Pi.topologicalSpace</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-1-1', this)"></button>
+      <pre>    rw [Pi.topologicalSpace] -- gröbste Topologie, wo alle projektionen stetig sind
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-1-1', this)"></button>
+    </div>
+    <div id="goal-before-1-1" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-turnstile">⊢</span> T ≤ Pi.topologicalSpace</pre></div>
+    <div id="goal-after-1-1" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-turnstile">⊢</span> T ≤ ⨅ i, TopologicalSpace.induced (fun f ↦ f i) (inst✝² i)</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-1-2', this)"></button>
+      <pre>    apply le_iInf
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-1-2', this)"></button>
+    </div>
+    <div id="goal-before-1-2" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-turnstile">⊢</span> T ≤ ⨅ i, TopologicalSpace.induced (fun f ↦ f i) (inst✝² i)</pre></div>
+    <div id="goal-after-1-2" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case h</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-turnstile">⊢</span> ∀ (i : I), T ≤ TopologicalSpace.induced (fun f ↦ f i) (inst✝² i)</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-1-3', this)"></button>
+      <pre>    intro i
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-1-3', this)"></button>
+    </div>
+    <div id="goal-before-1-3" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case h</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-turnstile">⊢</span> ∀ (i : I), T ≤ TopologicalSpace.induced (fun f ↦ f i) (inst✝² i)</pre></div>
+    <div id="goal-after-1-3" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case h</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">i</span> : I
+<span class="goal-turnstile">⊢</span> T ≤ TopologicalSpace.induced (fun f ↦ f i) (inst✝² i)</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-1-4', this)"></button>
+      <pre>    apply continuous_iff_le_induced.mp
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-1-4', this)"></button>
+    </div>
+    <div id="goal-before-1-4" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case h</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">i</span> : I
+<span class="goal-turnstile">⊢</span> T ≤ TopologicalSpace.induced (fun f ↦ f i) (inst✝² i)</pre></div>
+    <div id="goal-after-1-4" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case h</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">i</span> : I
+<span class="goal-turnstile">⊢</span> Continuous fun f ↦ f i</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-1-5', this)"></button>
+      <pre>    apply h_a
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-1-5', this)"></button>
+    </div>
+    <div id="goal-before-1-5" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case h</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">i</span> : I
+<span class="goal-turnstile">⊢</span> Continuous fun f ↦ f i</pre></div>
+    <div id="goal-after-1-5" class="hidden-goal"><pre class="goal-pre">keine Ziele</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-1-6', this)"></button>
+      <pre>  }
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-1-6', this)"></button>
+    </div>
+    <div id="goal-before-1-6" class="hidden-goal"><pre class="goal-pre">keine Ziele</pre></div>
+    <div id="goal-after-1-6" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">h_hinrichtung</span> : T ≤ Pi.topologicalSpace
+<span class="goal-turnstile">⊢</span> T = Pi.topologicalSpace</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-1-7', this)"></button>
+      <pre>  apply le_antisymm
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-1-7', this)"></button>
+    </div>
+    <div id="goal-before-1-7" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">h_hinrichtung</span> : T ≤ Pi.topologicalSpace
+<span class="goal-turnstile">⊢</span> T = Pi.topologicalSpace</pre></div>
+    <div id="goal-after-1-7" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case a</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">h_hinrichtung</span> : T ≤ Pi.topologicalSpace
+<span class="goal-turnstile">⊢</span> T ≤ Pi.topologicalSpace
+
+---
+
+<span class="goal-case">case a</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">h_hinrichtung</span> : T ≤ Pi.topologicalSpace
+<span class="goal-turnstile">⊢</span> Pi.topologicalSpace ≤ T</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-1-8', this)"></button>
+      <pre>  apply h_hinrichtung
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-1-8', this)"></button>
+    </div>
+    <div id="goal-before-1-8" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case a</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">h_hinrichtung</span> : T ≤ Pi.topologicalSpace
+<span class="goal-turnstile">⊢</span> T ≤ Pi.topologicalSpace
+
+---
+
+<span class="goal-case">case a</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">h_hinrichtung</span> : T ≤ Pi.topologicalSpace
+<span class="goal-turnstile">⊢</span> Pi.topologicalSpace ≤ T</pre></div>
+    <div id="goal-after-1-8" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case a</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">h_hinrichtung</span> : T ≤ Pi.topologicalSpace
+<span class="goal-turnstile">⊢</span> Pi.topologicalSpace ≤ T</pre></div>
+  </div>
+</div>
+<div class="proof-step">
+  <div class="comment" onclick="toggleCode('code-2')">Für die Rückrichtung zeigen wir: $\mathcal{T}_\Pi \subseteq \mathcal{T}$.
+Dazu zeigen wir, dass die Identitätsabbildung $\mathrm{id} : (\mathcal{X}, \mathcal{T}_\Pi) \to (\mathcal{X}, \mathcal{T})$ stetig ist.
+</div>
+  <div class="lean-line" id="code-2">
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-2-0', this)"></button>
+      <pre>  let idd : Xₚ -> Xₚ := @id Xₚ
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-2-0', this)"></button>
+    </div>
+    <div id="goal-before-2-0" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case a</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">h_hinrichtung</span> : T ≤ Pi.topologicalSpace
+<span class="goal-turnstile">⊢</span> Pi.topologicalSpace ≤ T</pre></div>
+    <div id="goal-after-2-0" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case a</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">h_hinrichtung</span> : T ≤ Pi.topologicalSpace
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-turnstile">⊢</span> Pi.topologicalSpace ≤ T</pre></div>
+  </div>
+</div>
+<div class="proof-step">
+  <div class="comment" onclick="toggleCode('code-3')">Da $\mathcal{T} \subseteq \mathcal{T}_\Pi$, ist die Identität in die andere Richtung stetig,
+also $\mathrm{id} : (\mathcal{X}, \mathcal{T}) \to (\mathcal{X}, \mathcal{T}_\Pi)$.
+</div>
+  <div class="lean-line" id="code-3">
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-3-0', this)"></button>
+      <pre>  have h_id : @Continuous Xₚ Xₚ T Pi.topologicalSpace idd := by {
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-3-0', this)"></button>
+    </div>
+    <div id="goal-before-3-0" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case a</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">h_hinrichtung</span> : T ≤ Pi.topologicalSpace
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-turnstile">⊢</span> Pi.topologicalSpace ≤ T</pre></div>
+    <div id="goal-after-3-0" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">h_hinrichtung</span> : T ≤ Pi.topologicalSpace
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-turnstile">⊢</span> Continuous idd</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-3-1', this)"></button>
+      <pre>    apply continuous_id_iff_le.mpr h_hinrichtung
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-3-1', this)"></button>
+    </div>
+    <div id="goal-before-3-1" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">h_hinrichtung</span> : T ≤ Pi.topologicalSpace
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-turnstile">⊢</span> Continuous idd</pre></div>
+    <div id="goal-after-3-1" class="hidden-goal"><pre class="goal-pre">keine Ziele</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-3-2', this)"></button>
+      <pre>  }
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-3-2', this)"></button>
+    </div>
+    <div id="goal-before-3-2" class="hidden-goal"><pre class="goal-pre">keine Ziele</pre></div>
+    <div id="goal-after-3-2" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case a</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">h_hinrichtung</span> : T ≤ Pi.topologicalSpace
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-turnstile">⊢</span> Pi.topologicalSpace ≤ T</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-3-3', this)"></button>
+      <pre>  clear h_hinrichtung
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-3-3', this)"></button>
+    </div>
+    <div id="goal-before-3-3" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case a</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">h_hinrichtung</span> : T ≤ Pi.topologicalSpace
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-turnstile">⊢</span> Pi.topologicalSpace ≤ T</pre></div>
+    <div id="goal-after-3-3" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case a</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-turnstile">⊢</span> Pi.topologicalSpace ≤ T</pre></div>
+  </div>
+</div>
+<div class="proof-step">
+  <div class="comment" onclick="toggleCode('code-4')">Wir zeigen, dass $(\mathcal{X}, \mathcal{T}_\Pi)$ ein Hausdorffraum ist.
+Seien $x, y \in \mathcal{X}$ mit $x \ne y$.
+Dann existiert ein Index $i \in I$ mit $x_i \ne y_i$.
+</div>
+  <div class="lean-line" id="code-4">
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-4-0', this)"></button>
+      <pre>  have h_hausdorff : @T2Space Xₚ Pi.topologicalSpace := by {
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-4-0', this)"></button>
+    </div>
+    <div id="goal-before-4-0" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case a</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-turnstile">⊢</span> Pi.topologicalSpace ≤ T</pre></div>
+    <div id="goal-after-4-0" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-turnstile">⊢</span> T2Space Xₚ</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-4-1', this)"></button>
+      <pre>    rw [t2Space_iff]
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-4-1', this)"></button>
+    </div>
+    <div id="goal-before-4-1" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-turnstile">⊢</span> T2Space Xₚ</pre></div>
+    <div id="goal-after-4-1" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-turnstile">⊢</span> Pairwise fun x y ↦ ∃ u v, IsOpen u ∧ IsOpen v ∧ x ∈ u ∧ y ∈ v ∧ Disjoint u v</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-4-2', this)"></button>
+      <pre>    intro x y h_not_eq
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-4-2', this)"></button>
+    </div>
+    <div id="goal-before-4-2" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-turnstile">⊢</span> Pairwise fun x y ↦ ∃ u v, IsOpen u ∧ IsOpen v ∧ x ∈ u ∧ y ∈ v ∧ Disjoint u v</pre></div>
+    <div id="goal-after-4-2" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-turnstile">⊢</span> ∃ u v, IsOpen u ∧ IsOpen v ∧ x ∈ u ∧ y ∈ v ∧ Disjoint u v</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-4-3', this)"></button>
+      <pre>    have h : ∃ i, x i ≠ y i := by {
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-4-3', this)"></button>
+    </div>
+    <div id="goal-before-4-3" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-turnstile">⊢</span> ∃ u v, IsOpen u ∧ IsOpen v ∧ x ∈ u ∧ y ∈ v ∧ Disjoint u v</pre></div>
+    <div id="goal-after-4-3" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-turnstile">⊢</span> ∃ i, x i ≠ y i</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-4-4', this)"></button>
+      <pre>      by_contra h
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-4-4', this)"></button>
+    </div>
+    <div id="goal-before-4-4" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-turnstile">⊢</span> ∃ i, x i ≠ y i</pre></div>
+    <div id="goal-after-4-4" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">h</span> : ¬∃ i, x i ≠ y i
+<span class="goal-turnstile">⊢</span> False</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-4-5', this)"></button>
+      <pre>      push_neg at h
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-4-5', this)"></button>
+    </div>
+    <div id="goal-before-4-5" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">h</span> : ¬∃ i, x i ≠ y i
+<span class="goal-turnstile">⊢</span> False</pre></div>
+    <div id="goal-after-4-5" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">h</span> : ∀ (i : I), x i = y i
+<span class="goal-turnstile">⊢</span> False</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-4-6', this)"></button>
+      <pre>      have h_eq : x = y := funext h
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-4-6', this)"></button>
+    </div>
+    <div id="goal-before-4-6" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">h</span> : ∀ (i : I), x i = y i
+<span class="goal-turnstile">⊢</span> False</pre></div>
+    <div id="goal-after-4-6" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">h</span> : ∀ (i : I), x i = y i
+<span class="goal-id">h_eq</span> : x = y
+<span class="goal-turnstile">⊢</span> False</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-4-7', this)"></button>
+      <pre>      exact h_not_eq h_eq
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-4-7', this)"></button>
+    </div>
+    <div id="goal-before-4-7" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">h</span> : ∀ (i : I), x i = y i
+<span class="goal-id">h_eq</span> : x = y
+<span class="goal-turnstile">⊢</span> False</pre></div>
+    <div id="goal-after-4-7" class="hidden-goal"><pre class="goal-pre">keine Ziele</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-4-8', this)"></button>
+      <pre>    }
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-4-8', this)"></button>
+    </div>
+    <div id="goal-before-4-8" class="hidden-goal"><pre class="goal-pre">keine Ziele</pre></div>
+    <div id="goal-after-4-8" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">h</span> : ∃ i, x i ≠ y i
+<span class="goal-turnstile">⊢</span> ∃ u v, IsOpen u ∧ IsOpen v ∧ x ∈ u ∧ y ∈ v ∧ Disjoint u v</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-4-9', this)"></button>
+      <pre>    obtain ⟨i, h⟩ := h
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-4-9', this)"></button>
+    </div>
+    <div id="goal-before-4-9" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">h</span> : ∃ i, x i ≠ y i
+<span class="goal-turnstile">⊢</span> ∃ u v, IsOpen u ∧ IsOpen v ∧ x ∈ u ∧ y ∈ v ∧ Disjoint u v</pre></div>
+    <div id="goal-after-4-9" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case intro</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-turnstile">⊢</span> ∃ u v, IsOpen u ∧ IsOpen v ∧ x ∈ u ∧ y ∈ v ∧ Disjoint u v</pre></div>
+  </div>
+</div>
+<div class="proof-step">
+  <div class="comment" onclick="toggleCode('code-5')">Da $X_i$ ein Hausdorffraum ist, gibt es disjunkte offene Mengen $U, V \subseteq X_i$,
+sodass $x_i \in U$, $y_i \in V$ und $U \cap V = \emptyset$.
+</div>
+  <div class="lean-line" id="code-5">
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-5-0', this)"></button>
+      <pre>    obtain ⟨U, V, h_U_open, h_V_open, h_xU, h_yV, h_disj⟩ := t2_separation h
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-5-0', this)"></button>
+    </div>
+    <div id="goal-before-5-0" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case intro</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-turnstile">⊢</span> ∃ u v, IsOpen u ∧ IsOpen v ∧ x ∈ u ∧ y ∈ v ∧ Disjoint u v</pre></div>
+    <div id="goal-after-5-0" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case intro.intro.intro.intro.intro.intro.intro</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-turnstile">⊢</span> ∃ u v, IsOpen u ∧ IsOpen v ∧ x ∈ u ∧ y ∈ v ∧ Disjoint u v</pre></div>
+  </div>
+</div>
+<div class="proof-step">
+  <div class="comment" onclick="toggleCode('code-6')">Dann sind $U' := \pi_i^{-1}(U)$ und $V' := \pi_i^{-1}(V)$ offene Mengen in der Produkttopologie,
+die $x$ und $y$ enthalten, und disjunkt sind.
+</div>
+  <div class="lean-line" id="code-6">
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-6-0', this)"></button>
+      <pre>    let U' : Set Xₚ := (π i)⁻¹' U
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-6-0', this)"></button>
+    </div>
+    <div id="goal-before-6-0" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case intro.intro.intro.intro.intro.intro.intro</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-turnstile">⊢</span> ∃ u v, IsOpen u ∧ IsOpen v ∧ x ∈ u ∧ y ∈ v ∧ Disjoint u v</pre></div>
+    <div id="goal-after-6-0" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case intro.intro.intro.intro.intro.intro.intro</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-id">U'</span> : Set Xₚ := π i ⁻¹' U
+<span class="goal-turnstile">⊢</span> ∃ u v, IsOpen u ∧ IsOpen v ∧ x ∈ u ∧ y ∈ v ∧ Disjoint u v</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-6-1', this)"></button>
+      <pre>    let V' : Set Xₚ := (π i)⁻¹' V
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-6-1', this)"></button>
+    </div>
+    <div id="goal-before-6-1" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case intro.intro.intro.intro.intro.intro.intro</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-id">U'</span> : Set Xₚ := π i ⁻¹' U
+<span class="goal-turnstile">⊢</span> ∃ u v, IsOpen u ∧ IsOpen v ∧ x ∈ u ∧ y ∈ v ∧ Disjoint u v</pre></div>
+    <div id="goal-after-6-1" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case intro.intro.intro.intro.intro.intro.intro</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-id">U'</span> : Set Xₚ := π i ⁻¹' U
+<span class="goal-id">V'</span> : Set Xₚ := π i ⁻¹' V
+<span class="goal-turnstile">⊢</span> ∃ u v, IsOpen u ∧ IsOpen v ∧ x ∈ u ∧ y ∈ v ∧ Disjoint u v</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-6-2', this)"></button>
+      <pre>    letI : TopologicalSpace Xₚ := Pi.topologicalSpace -- wir arbeiten mit der Produkttopologie
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-6-2', this)"></button>
+    </div>
+    <div id="goal-before-6-2" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case intro.intro.intro.intro.intro.intro.intro</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-id">U'</span> : Set Xₚ := π i ⁻¹' U
+<span class="goal-id">V'</span> : Set Xₚ := π i ⁻¹' V
+<span class="goal-turnstile">⊢</span> ∃ u v, IsOpen u ∧ IsOpen v ∧ x ∈ u ∧ y ∈ v ∧ Disjoint u v</pre></div>
+    <div id="goal-after-6-2" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case intro.intro.intro.intro.intro.intro.intro</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-id">U'</span> : Set Xₚ := π i ⁻¹' U
+<span class="goal-id">V'</span> : Set Xₚ := π i ⁻¹' V
+<span class="goal-id">this</span> : TopologicalSpace Xₚ := Pi.topologicalSpace
+<span class="goal-turnstile">⊢</span> ∃ u v, IsOpen u ∧ IsOpen v ∧ x ∈ u ∧ y ∈ v ∧ Disjoint u v</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-6-3', this)"></button>
+      <pre>    have h_U'_open : @IsOpen Xₚ Pi.topologicalSpace U' := by {
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-6-3', this)"></button>
+    </div>
+    <div id="goal-before-6-3" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case intro.intro.intro.intro.intro.intro.intro</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-id">U'</span> : Set Xₚ := π i ⁻¹' U
+<span class="goal-id">V'</span> : Set Xₚ := π i ⁻¹' V
+<span class="goal-id">this</span> : TopologicalSpace Xₚ := Pi.topologicalSpace
+<span class="goal-turnstile">⊢</span> ∃ u v, IsOpen u ∧ IsOpen v ∧ x ∈ u ∧ y ∈ v ∧ Disjoint u v</pre></div>
+    <div id="goal-after-6-3" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-id">U'</span> : Set Xₚ := π i ⁻¹' U
+<span class="goal-id">V'</span> : Set Xₚ := π i ⁻¹' V
+<span class="goal-id">this</span> : TopologicalSpace Xₚ := Pi.topologicalSpace
+<span class="goal-turnstile">⊢</span> IsOpen U'</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-6-4', this)"></button>
+      <pre>      apply Continuous.isOpen_preimage
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-6-4', this)"></button>
+    </div>
+    <div id="goal-before-6-4" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-id">U'</span> : Set Xₚ := π i ⁻¹' U
+<span class="goal-id">V'</span> : Set Xₚ := π i ⁻¹' V
+<span class="goal-id">this</span> : TopologicalSpace Xₚ := Pi.topologicalSpace
+<span class="goal-turnstile">⊢</span> IsOpen U'</pre></div>
+    <div id="goal-after-6-4" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case self</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-id">U'</span> : Set Xₚ := π i ⁻¹' U
+<span class="goal-id">V'</span> : Set Xₚ := π i ⁻¹' V
+<span class="goal-id">this</span> : TopologicalSpace Xₚ := Pi.topologicalSpace
+<span class="goal-turnstile">⊢</span> Continuous (π i)
+
+---
+
+<span class="goal-case">case a</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-id">U'</span> : Set Xₚ := π i ⁻¹' U
+<span class="goal-id">V'</span> : Set Xₚ := π i ⁻¹' V
+<span class="goal-id">this</span> : TopologicalSpace Xₚ := Pi.topologicalSpace
+<span class="goal-turnstile">⊢</span> IsOpen U</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-6-5', this)"></button>
+      <pre>      exact continuous_apply i
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-6-5', this)"></button>
+    </div>
+    <div id="goal-before-6-5" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case self</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-id">U'</span> : Set Xₚ := π i ⁻¹' U
+<span class="goal-id">V'</span> : Set Xₚ := π i ⁻¹' V
+<span class="goal-id">this</span> : TopologicalSpace Xₚ := Pi.topologicalSpace
+<span class="goal-turnstile">⊢</span> Continuous (π i)
+
+---
+
+<span class="goal-case">case a</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-id">U'</span> : Set Xₚ := π i ⁻¹' U
+<span class="goal-id">V'</span> : Set Xₚ := π i ⁻¹' V
+<span class="goal-id">this</span> : TopologicalSpace Xₚ := Pi.topologicalSpace
+<span class="goal-turnstile">⊢</span> IsOpen U</pre></div>
+    <div id="goal-after-6-5" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case a</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-id">U'</span> : Set Xₚ := π i ⁻¹' U
+<span class="goal-id">V'</span> : Set Xₚ := π i ⁻¹' V
+<span class="goal-id">this</span> : TopologicalSpace Xₚ := Pi.topologicalSpace
+<span class="goal-turnstile">⊢</span> IsOpen U</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-6-6', this)"></button>
+      <pre>      exact h_U_open
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-6-6', this)"></button>
+    </div>
+    <div id="goal-before-6-6" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case a</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-id">U'</span> : Set Xₚ := π i ⁻¹' U
+<span class="goal-id">V'</span> : Set Xₚ := π i ⁻¹' V
+<span class="goal-id">this</span> : TopologicalSpace Xₚ := Pi.topologicalSpace
+<span class="goal-turnstile">⊢</span> IsOpen U</pre></div>
+    <div id="goal-after-6-6" class="hidden-goal"><pre class="goal-pre">keine Ziele</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-6-7', this)"></button>
+      <pre>    }
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-6-7', this)"></button>
+    </div>
+    <div id="goal-before-6-7" class="hidden-goal"><pre class="goal-pre">keine Ziele</pre></div>
+    <div id="goal-after-6-7" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case intro.intro.intro.intro.intro.intro.intro</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-id">U'</span> : Set Xₚ := π i ⁻¹' U
+<span class="goal-id">V'</span> : Set Xₚ := π i ⁻¹' V
+<span class="goal-id">this</span> : TopologicalSpace Xₚ := Pi.topologicalSpace
+<span class="goal-id">h_U'_open</span> : IsOpen U'
+<span class="goal-turnstile">⊢</span> ∃ u v, IsOpen u ∧ IsOpen v ∧ x ∈ u ∧ y ∈ v ∧ Disjoint u v</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-6-8', this)"></button>
+      <pre>    have h_V'_open : @IsOpen Xₚ Pi.topologicalSpace V' := by {
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-6-8', this)"></button>
+    </div>
+    <div id="goal-before-6-8" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case intro.intro.intro.intro.intro.intro.intro</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-id">U'</span> : Set Xₚ := π i ⁻¹' U
+<span class="goal-id">V'</span> : Set Xₚ := π i ⁻¹' V
+<span class="goal-id">this</span> : TopologicalSpace Xₚ := Pi.topologicalSpace
+<span class="goal-id">h_U'_open</span> : IsOpen U'
+<span class="goal-turnstile">⊢</span> ∃ u v, IsOpen u ∧ IsOpen v ∧ x ∈ u ∧ y ∈ v ∧ Disjoint u v</pre></div>
+    <div id="goal-after-6-8" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-id">U'</span> : Set Xₚ := π i ⁻¹' U
+<span class="goal-id">V'</span> : Set Xₚ := π i ⁻¹' V
+<span class="goal-id">this</span> : TopologicalSpace Xₚ := Pi.topologicalSpace
+<span class="goal-id">h_U'_open</span> : IsOpen U'
+<span class="goal-turnstile">⊢</span> IsOpen V'</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-6-9', this)"></button>
+      <pre>      apply Continuous.isOpen_preimage
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-6-9', this)"></button>
+    </div>
+    <div id="goal-before-6-9" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-id">U'</span> : Set Xₚ := π i ⁻¹' U
+<span class="goal-id">V'</span> : Set Xₚ := π i ⁻¹' V
+<span class="goal-id">this</span> : TopologicalSpace Xₚ := Pi.topologicalSpace
+<span class="goal-id">h_U'_open</span> : IsOpen U'
+<span class="goal-turnstile">⊢</span> IsOpen V'</pre></div>
+    <div id="goal-after-6-9" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case self</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-id">U'</span> : Set Xₚ := π i ⁻¹' U
+<span class="goal-id">V'</span> : Set Xₚ := π i ⁻¹' V
+<span class="goal-id">this</span> : TopologicalSpace Xₚ := Pi.topologicalSpace
+<span class="goal-id">h_U'_open</span> : IsOpen U'
+<span class="goal-turnstile">⊢</span> Continuous (π i)
+
+---
+
+<span class="goal-case">case a</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-id">U'</span> : Set Xₚ := π i ⁻¹' U
+<span class="goal-id">V'</span> : Set Xₚ := π i ⁻¹' V
+<span class="goal-id">this</span> : TopologicalSpace Xₚ := Pi.topologicalSpace
+<span class="goal-id">h_U'_open</span> : IsOpen U'
+<span class="goal-turnstile">⊢</span> IsOpen V</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-6-10', this)"></button>
+      <pre>      exact continuous_apply i
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-6-10', this)"></button>
+    </div>
+    <div id="goal-before-6-10" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case self</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-id">U'</span> : Set Xₚ := π i ⁻¹' U
+<span class="goal-id">V'</span> : Set Xₚ := π i ⁻¹' V
+<span class="goal-id">this</span> : TopologicalSpace Xₚ := Pi.topologicalSpace
+<span class="goal-id">h_U'_open</span> : IsOpen U'
+<span class="goal-turnstile">⊢</span> Continuous (π i)
+
+---
+
+<span class="goal-case">case a</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-id">U'</span> : Set Xₚ := π i ⁻¹' U
+<span class="goal-id">V'</span> : Set Xₚ := π i ⁻¹' V
+<span class="goal-id">this</span> : TopologicalSpace Xₚ := Pi.topologicalSpace
+<span class="goal-id">h_U'_open</span> : IsOpen U'
+<span class="goal-turnstile">⊢</span> IsOpen V</pre></div>
+    <div id="goal-after-6-10" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case a</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-id">U'</span> : Set Xₚ := π i ⁻¹' U
+<span class="goal-id">V'</span> : Set Xₚ := π i ⁻¹' V
+<span class="goal-id">this</span> : TopologicalSpace Xₚ := Pi.topologicalSpace
+<span class="goal-id">h_U'_open</span> : IsOpen U'
+<span class="goal-turnstile">⊢</span> IsOpen V</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-6-11', this)"></button>
+      <pre>      exact h_V_open
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-6-11', this)"></button>
+    </div>
+    <div id="goal-before-6-11" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case a</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-id">U'</span> : Set Xₚ := π i ⁻¹' U
+<span class="goal-id">V'</span> : Set Xₚ := π i ⁻¹' V
+<span class="goal-id">this</span> : TopologicalSpace Xₚ := Pi.topologicalSpace
+<span class="goal-id">h_U'_open</span> : IsOpen U'
+<span class="goal-turnstile">⊢</span> IsOpen V</pre></div>
+    <div id="goal-after-6-11" class="hidden-goal"><pre class="goal-pre">keine Ziele</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-6-12', this)"></button>
+      <pre>    }
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-6-12', this)"></button>
+    </div>
+    <div id="goal-before-6-12" class="hidden-goal"><pre class="goal-pre">keine Ziele</pre></div>
+    <div id="goal-after-6-12" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case intro.intro.intro.intro.intro.intro.intro</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-id">U'</span> : Set Xₚ := π i ⁻¹' U
+<span class="goal-id">V'</span> : Set Xₚ := π i ⁻¹' V
+<span class="goal-id">this</span> : TopologicalSpace Xₚ := Pi.topologicalSpace
+<span class="goal-id">h_U'_open</span> : IsOpen U'
+<span class="goal-id">h_V'_open</span> : IsOpen V'
+<span class="goal-turnstile">⊢</span> ∃ u v, IsOpen u ∧ IsOpen v ∧ x ∈ u ∧ y ∈ v ∧ Disjoint u v</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-6-13', this)"></button>
+      <pre>    have h_disj' : Disjoint U' V' := by {
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-6-13', this)"></button>
+    </div>
+    <div id="goal-before-6-13" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case intro.intro.intro.intro.intro.intro.intro</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-id">U'</span> : Set Xₚ := π i ⁻¹' U
+<span class="goal-id">V'</span> : Set Xₚ := π i ⁻¹' V
+<span class="goal-id">this</span> : TopologicalSpace Xₚ := Pi.topologicalSpace
+<span class="goal-id">h_U'_open</span> : IsOpen U'
+<span class="goal-id">h_V'_open</span> : IsOpen V'
+<span class="goal-turnstile">⊢</span> ∃ u v, IsOpen u ∧ IsOpen v ∧ x ∈ u ∧ y ∈ v ∧ Disjoint u v</pre></div>
+    <div id="goal-after-6-13" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-id">U'</span> : Set Xₚ := π i ⁻¹' U
+<span class="goal-id">V'</span> : Set Xₚ := π i ⁻¹' V
+<span class="goal-id">this</span> : TopologicalSpace Xₚ := Pi.topologicalSpace
+<span class="goal-id">h_U'_open</span> : IsOpen U'
+<span class="goal-id">h_V'_open</span> : IsOpen V'
+<span class="goal-turnstile">⊢</span> Disjoint U' V'</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-6-14', this)"></button>
+      <pre>      apply h_disj.preimage
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-6-14', this)"></button>
+    </div>
+    <div id="goal-before-6-14" class="hidden-goal"><pre class="goal-pre"><span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-id">U'</span> : Set Xₚ := π i ⁻¹' U
+<span class="goal-id">V'</span> : Set Xₚ := π i ⁻¹' V
+<span class="goal-id">this</span> : TopologicalSpace Xₚ := Pi.topologicalSpace
+<span class="goal-id">h_U'_open</span> : IsOpen U'
+<span class="goal-id">h_V'_open</span> : IsOpen V'
+<span class="goal-turnstile">⊢</span> Disjoint U' V'</pre></div>
+    <div id="goal-after-6-14" class="hidden-goal"><pre class="goal-pre">keine Ziele</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-6-15', this)"></button>
+      <pre>    }
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-6-15', this)"></button>
+    </div>
+    <div id="goal-before-6-15" class="hidden-goal"><pre class="goal-pre">keine Ziele</pre></div>
+    <div id="goal-after-6-15" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case intro.intro.intro.intro.intro.intro.intro</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-id">U'</span> : Set Xₚ := π i ⁻¹' U
+<span class="goal-id">V'</span> : Set Xₚ := π i ⁻¹' V
+<span class="goal-id">this</span> : TopologicalSpace Xₚ := Pi.topologicalSpace
+<span class="goal-id">h_U'_open</span> : IsOpen U'
+<span class="goal-id">h_V'_open</span> : IsOpen V'
+<span class="goal-id">h_disj'</span> : Disjoint U' V'
+<span class="goal-turnstile">⊢</span> ∃ u v, IsOpen u ∧ IsOpen v ∧ x ∈ u ∧ y ∈ v ∧ Disjoint u v</pre></div>
+  </div>
+</div>
+<div class="proof-step">
+  <div class="comment" onclick="toggleCode('code-7')">Damit haben wir gezeigt, dass die Produkttopologie ein Hausdorffraum ist.
+</div>
+  <div class="lean-line" id="code-7">
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-7-0', this)"></button>
+      <pre>    use U', V'
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-7-0', this)"></button>
+    </div>
+    <div id="goal-before-7-0" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case intro.intro.intro.intro.intro.intro.intro</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-id">U'</span> : Set Xₚ := π i ⁻¹' U
+<span class="goal-id">V'</span> : Set Xₚ := π i ⁻¹' V
+<span class="goal-id">this</span> : TopologicalSpace Xₚ := Pi.topologicalSpace
+<span class="goal-id">h_U'_open</span> : IsOpen U'
+<span class="goal-id">h_V'_open</span> : IsOpen V'
+<span class="goal-id">h_disj'</span> : Disjoint U' V'
+<span class="goal-turnstile">⊢</span> ∃ u v, IsOpen u ∧ IsOpen v ∧ x ∈ u ∧ y ∈ v ∧ Disjoint u v</pre></div>
+    <div id="goal-after-7-0" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case h</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-id">U'</span> : Set Xₚ := π i ⁻¹' U
+<span class="goal-id">V'</span> : Set Xₚ := π i ⁻¹' V
+<span class="goal-id">this</span> : TopologicalSpace Xₚ := Pi.topologicalSpace
+<span class="goal-id">h_U'_open</span> : IsOpen U'
+<span class="goal-id">h_V'_open</span> : IsOpen V'
+<span class="goal-id">h_disj'</span> : Disjoint U' V'
+<span class="goal-turnstile">⊢</span> IsOpen U' ∧ IsOpen V' ∧ x ∈ U' ∧ y ∈ V' ∧ Disjoint U' V'</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-7-1', this)"></button>
+      <pre>    exact ⟨h_U'_open, h_V'_open, h_xU, h_yV, h_disj'⟩
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-7-1', this)"></button>
+    </div>
+    <div id="goal-before-7-1" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case h</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">x y</span> : Xₚ
+<span class="goal-id">h_not_eq</span> : x ≠ y
+<span class="goal-id">i</span> : I
+<span class="goal-id">h</span> : x i ≠ y i
+<span class="goal-id">U V</span> : Set (X i)
+<span class="goal-id">h_U_open</span> : IsOpen U
+<span class="goal-id">h_V_open</span> : IsOpen V
+<span class="goal-id">h_xU</span> : x i ∈ U
+<span class="goal-id">h_yV</span> : y i ∈ V
+<span class="goal-id">h_disj</span> : Disjoint U V
+<span class="goal-id">U'</span> : Set Xₚ := π i ⁻¹' U
+<span class="goal-id">V'</span> : Set Xₚ := π i ⁻¹' V
+<span class="goal-id">this</span> : TopologicalSpace Xₚ := Pi.topologicalSpace
+<span class="goal-id">h_U'_open</span> : IsOpen U'
+<span class="goal-id">h_V'_open</span> : IsOpen V'
+<span class="goal-id">h_disj'</span> : Disjoint U' V'
+<span class="goal-turnstile">⊢</span> IsOpen U' ∧ IsOpen V' ∧ x ∈ U' ∧ y ∈ V' ∧ Disjoint U' V'</pre></div>
+    <div id="goal-after-7-1" class="hidden-goal"><pre class="goal-pre">keine Ziele</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-7-2', this)"></button>
+      <pre>  }
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-7-2', this)"></button>
+    </div>
+    <div id="goal-before-7-2" class="hidden-goal"><pre class="goal-pre">keine Ziele</pre></div>
+    <div id="goal-after-7-2" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case a</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">h_hausdorff</span> : T2Space Xₚ
+<span class="goal-turnstile">⊢</span> Pi.topologicalSpace ≤ T</pre></div>
+  </div>
+</div>
+<div class="proof-step">
+  <div class="comment" onclick="toggleCode('code-8')">Jetzt wenden wir Satz 5.19 an. Er besagt, dass eine stetige, bijektive Abbildung
+zwischen einem kompaktem Raum und einem Hausdorffraum ein Homöomorphismus ist.
+Wir wenden den Satz auf die Identitätsabbildung $\mathrm{id} : (\mathcal{X}, \mathcal{T}_\Pi) \to (\mathcal{X}, \mathcal{T})$ an.
+Somit ist auch die Identität in die andere Richtung stetig.
+Daraus folgt: $\mathcal{T}_\Pi \subseteq \mathcal{T}$.
+</div>
+  <div class="lean-line" id="code-8">
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-8-0', this)"></button>
+      <pre>  have h := @Continuous.continuous_symm_of_equiv_compact_to_t2 Xₚ Xₚ T
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-8-0', this)"></button>
+    </div>
+    <div id="goal-before-8-0" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case a</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">h_hausdorff</span> : T2Space Xₚ
+<span class="goal-turnstile">⊢</span> Pi.topologicalSpace ≤ T</pre></div>
+    <div id="goal-after-8-0" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case a</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">h_hausdorff</span> : T2Space Xₚ
+<span class="goal-id">h</span> : Continuous ⇑(Equiv.refl Xₚ).symm
+<span class="goal-turnstile">⊢</span> Pi.topologicalSpace ≤ T</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-8-1', this)"></button>
+      <pre>    Pi.topologicalSpace h_b h_hausdorff (Equiv.refl Xₚ) h_id
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-8-1', this)"></button>
+    </div>
+    <div id="goal-before-8-1" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case a</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">h_hausdorff</span> : T2Space Xₚ
+<span class="goal-id">h</span> : Continuous ⇑(Equiv.refl Xₚ).symm
+<span class="goal-turnstile">⊢</span> Pi.topologicalSpace ≤ T</pre></div>
+    <div id="goal-after-8-1" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case a</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">h_hausdorff</span> : T2Space Xₚ
+<span class="goal-id">h</span> : Continuous ⇑(Equiv.refl Xₚ).symm
+<span class="goal-turnstile">⊢</span> Pi.topologicalSpace ≤ T</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-8-2', this)"></button>
+      <pre>  simp at h
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-8-2', this)"></button>
+    </div>
+    <div id="goal-before-8-2" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case a</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">h_hausdorff</span> : T2Space Xₚ
+<span class="goal-id">h</span> : Continuous ⇑(Equiv.refl Xₚ).symm
+<span class="goal-turnstile">⊢</span> Pi.topologicalSpace ≤ T</pre></div>
+    <div id="goal-after-8-2" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case a</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">h_hausdorff</span> : T2Space Xₚ
+<span class="goal-id">h</span> : Continuous id
+<span class="goal-turnstile">⊢</span> Pi.topologicalSpace ≤ T</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-8-3', this)"></button>
+      <pre>  apply continuous_id_iff_le.mp h
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-8-3', this)"></button>
+    </div>
+    <div id="goal-before-8-3" class="hidden-goal"><pre class="goal-pre"><span class="goal-case">case a</span>
+<span class="goal-id">I</span> : Type u_1
+<span class="goal-id">X</span> : I → Type u_2
+<span class="goal-id">inst✝²</span> : (i : I) → TopologicalSpace (X i)
+<span class="goal-id">inst✝¹</span> : ∀ (i : I), CompactSpace (X i)
+<span class="goal-id">inst✝</span> : ∀ (i : I), T2Space (X i)
+<span class="goal-id">T</span> : TopologicalSpace ((i : I) → X i)
+<span class="goal-id">h_a</span> : ∀ (j : I), Continuous fun f ↦ f j
+<span class="goal-id">h_b</span> : CompactSpace ((i : I) → X i)
+<span class="goal-id">Xₚ</span> : Type (max u_1 u_2) := (i : I) → X i
+<span class="goal-id">π</span> : (i : I) → Xₚ → X i := fun i f ↦ f i
+<span class="goal-id">idd</span> : Xₚ → Xₚ := id
+<span class="goal-id">h_id</span> : Continuous idd
+<span class="goal-id">h_hausdorff</span> : T2Space Xₚ
+<span class="goal-id">h</span> : Continuous id
+<span class="goal-turnstile">⊢</span> Pi.topologicalSpace ≤ T</pre></div>
+    <div id="goal-after-8-3" class="hidden-goal"><pre class="goal-pre">keine Ziele</pre></div>
+    <div class="lean-line-row">
+      <button class="goal-button" onclick="setGoalFromElement('goal-before-8-4', this)"></button>
+      <pre>}
+</pre>
+      <button class="goal-button" onclick="setGoalFromElement('goal-after-8-4', this)"></button>
+    </div>
+    <div id="goal-before-8-4" class="hidden-goal"><pre class="goal-pre">keine Ziele</pre></div>
+    <div id="goal-after-8-4" class="hidden-goal"><pre class="goal-pre">keine Ziele</pre></div>
+  </div>
+</div>
+
+        </div>
+        <div class="goal-area">
+            <h2>Ziele</h2>
+            <div id="goal-display">
+                <p>Wählen Sie eine Position aus, um ein Ziel anzuzeigen.</p>
+            </div>
+        </div>
+    </div>
+    <script>
+    let currentActiveButton = null;
+let goalButtons = [];
+let goalButtonIndex = -1;
+
+
+function toggleCode(id) {
+    const block = document.getElementById(id);
+    if (block.style.display === "none" || block.style.display === "") {
+        block.style.display = "block";
+    } else {
+        block.style.display = "none";
+    }
+}
+
+
+function setGoalFromElement(id, button_element) {
+    const goalText = document.getElementById(id).innerHTML;
+    setGoal(goalText, button_element);
+}
+
+
+function setGoal(goal_string, button_element) {
+    const goalArea = document.getElementById("goal-display");
+    goalArea.innerHTML = `<div>${goal_string}</div>`;
+
+    // Remove the previous marked button
+    if (currentActiveButton) {
+        currentActiveButton.classList.remove("active-goal-button");
+    }
+
+    // Mark the new button as active
+    if (button_element) {
+        button_element.classList.add("active-goal-button");
+        currentActiveButton = button_element;
+        
+        // keep track of the current button index (for keyboard navigation)
+        const newIndex = goalButtons.indexOf(button_element);
+        goalButtonIndex = newIndex;
+    }
+}
+
+
+
+// load all goal buttons on page load
+window.addEventListener('load', () => {
+    goalButtons = Array.from(document.querySelectorAll('.goal-button'));
+});
+
+// keyboard navigation for goal buttons
+document.addEventListener('keydown', (e) => {
+    if (goalButtons.length === 0) return;
+
+    if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (goalButtonIndex < goalButtons.length - 2) {
+            goalButtonIndex = goalButtonIndex + 2;
+        }
+    }
+
+    if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (goalButtonIndex > 1) {
+            goalButtonIndex = goalButtonIndex - 2;
+        }
+    }
+
+    if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        if (goalButtonIndex < goalButtons.length - 1) {
+            goalButtonIndex = goalButtonIndex + 1;
+        }
+    }
+
+    if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        if (goalButtonIndex > 0) {
+            goalButtonIndex = goalButtonIndex - 1;
+        }
+    }
+
+    ensureVisible(goalButtons[goalButtonIndex]);
+    goalButtons[goalButtonIndex].click();
+});
+
+
+// we want to ensure that the button is visible when navigating with the keyboard
+function ensureVisible(button) {
+    let parent = button.parentElement.parentElement;
+    if (parent.style.display === "none" || parent.style.display === "") {
+        parent.style.display = "block";
+    }
+}
+    </script>
+</body>
