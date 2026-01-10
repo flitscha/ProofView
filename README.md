@@ -35,6 +35,11 @@ python3 src/main.py src/examples/example_file.lean
 ```
 This will create an output.html file with the interactive proof view.
 
+The folder `example_outputs/` already contains the generated `output.html` which looks like the screenshot below.
+
+<img width="1621" height="802" alt="image" src="https://github.com/user-attachments/assets/fe1edacd-dc73-482e-9d5e-3f0fa0253467" />
+
+
 
 ## Requirements
 - Make sure lean4 is installed and that it works with the file you want to convert. (Goals are displayed correctly, no error messages)
